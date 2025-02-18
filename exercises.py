@@ -13,6 +13,7 @@ def calculate_area_triangle(base, height):
     return (base * height) / 2
 
 print('Exercise 1:', calculate_area_triangle(10, 5))
+print('Exercise 1:', calculate_area_triangle(7, 3))
 
 # Exercise 2: Calculate Simple Interest
 #
@@ -29,6 +30,7 @@ def simple_interest(principle, rate, years):
     return (principle * rate * years)/100
 
 print('Exercise 2:', simple_interest(1000, 5, 2))
+print('Exercise 2:', simple_interest(1500, 3.5, 5))
 
 # Exercise 3: Apply a Discount
 #
@@ -45,6 +47,7 @@ def apply_discount(price, discount):
     return price - (price * (discount/100))
 
 print('Exercise 3:', apply_discount(100, 25))
+print('Exercise 3:', apply_discount(80, 10))
 
 # Exercise 4: Convert Temperature
 #
@@ -70,3 +73,31 @@ def convert_temperature(temperature, unit):
 
 print('Exercise 4: Convert 0°C to Fahrenheit:', convert_temperature(0, 'C'))
 print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F'))
+
+# Exercise 5: Sum to N
+#
+# Write a function named `sum_to` that takes a single integer n and returns the sum of all integers from 1 to n.
+#
+# Examples:
+# sum_to(6) should return 21.
+# sum_to(10) should return 55.
+#
+# Define the function and then call it below.
+
+def sum_to(input):
+    count = 0
+    
+    if input == 0:
+        count = 1
+    elif input > 0:
+        for num in range(input + 1):
+            count += num
+    elif input < 0:
+        for num in range(input, 2, 1):
+            count += num
+    
+    return count
+
+print('Exercise 5:', sum_to(-6)) # should resolve to = -20
+print('Exercise 5:', sum_to(6)) # should resolve to 21
+print('Exercise 5:', sum_to(10))
