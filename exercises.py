@@ -10,10 +10,20 @@
 # Define your function and call it below.
 
 def calculate_area_triangle(base, height):
-    return (base * height) / 2
+    try: 
+        base = float(base)
+        height = float(height)
+        
+        if base < 1 or height < 1:
+            return print('Input Error: Base and height must be greater than 0.')
+        else:
+            return (base * height) / 2
+    except ValueError:
+        print('Input Error: Base and height must be numbers.')
+        return None
 
 print('Exercise 1:', calculate_area_triangle(10, 5))
-print('Exercise 1:', calculate_area_triangle(7, 3))
+print('Exercise 1:', calculate_area_triangle('f', 3))
 
 # Exercise 2: Calculate Simple Interest
 #
@@ -26,11 +36,22 @@ print('Exercise 1:', calculate_area_triangle(7, 3))
 #
 # Define your function and call it to see the result.
 
-def simple_interest(principle, rate, years):    
-    return (principle * rate * years)/100
+def simple_interest(principle, rate, years):
+    try: 
+        principle = float(principle)
+        rate = float(rate)
+        years = float(years)
+        
+        if principle < 0 or rate < 0 or years < 0:
+            return print ('Input Error: Principle, rate and years must greater than 0.')
+        else:
+            return (principle * rate * years)/100
+    except ValueError:
+        print('Input Error: Principle, Rate, and Years must be numbers.')
+        return None
 
 print('Exercise 2:', simple_interest(1000, 5, 2))
-print('Exercise 2:', simple_interest(1500, 3.5, 5))
+print('Exercise 2:', simple_interest(1500, 3.5, 'f'))
 
 # Exercise 3: Apply a Discount
 #
@@ -44,9 +65,23 @@ print('Exercise 2:', simple_interest(1500, 3.5, 5))
 # Define your function and call it to display the discounted price.
 
 def apply_discount(price, discount):
-    return price - (price * (discount/100))
+    try:
+        price = float(price)
+        discount = float(discount)
+        
+        if price < 0 or discount < 0:
+            return print('Input Error: Price and discount must be greater than 0.')
+        elif discount > 100:
+            return print('Input Error: Discount cannot be greater than 100%.')
+        else:
+            return round(price - (price * (discount/100)), 2)
+    except ValueError:
+        print('Input Error: Price and discount must be numbers.')
+        return None
 
-print('Exercise 3:', apply_discount(100, 25))
+print('Exercise 3:', apply_discount(100, -1))
+print('Exercise 3:', apply_discount(80, 101))
+print('Exercise 3:', apply_discount('f', 25))
 print('Exercise 3:', apply_discount(80, 10))
 
 # Exercise 4: Convert Temperature
@@ -64,12 +99,21 @@ print('Exercise 3:', apply_discount(80, 10))
 # Define the function and then call it below.
 
 def convert_temperature(temperature, unit):
-    if unit.upper() == 'C':
-        return (temperature * (9/5)) + 32
-    elif unit.upper() == 'F':
-        return (temperature - 32) * (5/9)
-    else:
-        return ('Invalid Input')
+    units = ['F', 'C']
+    
+    try:
+        temperature = float(temperature)
+        
+        if unit.upper() == 'C':
+            return round((temperature * (9/5)) + 32, 2)
+        elif unit.upper() == 'F':
+            return round((temperature - 32) * (5/9), 2)
+        else:
+            return print('Input Error: Unit must be "C" or "F".')
+    
+    except ValueError:
+        print('Input Error: Temperature must be a number.')
+        return None
 
 print('Exercise 4: Convert 0°C to Fahrenheit:', convert_temperature(0, 'C'))
 print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F'))
@@ -87,20 +131,27 @@ print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F'))
 def sum_to(input):
     count = 0
     
-    if input == 0:
-        count = 1
-    elif input > 0:
-        for num in range(input + 1):
-            count += num
-    elif input < 0:
-        for num in range(input, 2, 1):
-            count += num
+    try:
+        input = int(input)
+        
+        if input == 0:
+            count = 1
+        elif input > 0:
+            for num in range(input + 1):
+                count += num
+        elif input < 0:
+            for num in range(input, 2, 1):
+                count += num
+        
+        return count
     
-    return count
+    except ValueError:
+        print('Input Error: Input must be an integer.')
+        return None
 
 print('Exercise 5:', sum_to(-6)) # should resolve to = -20
 print('Exercise 5:', sum_to(6)) # should resolve to 21
-print('Exercise 5:', sum_to(10))
+print('Exercise 5:', sum_to('f'))
 
 # Exercise 6: Find the Largest Number
 #
@@ -113,12 +164,21 @@ print('Exercise 5:', sum_to(10))
 # Define your function and test it with different inputs.
 
 def largest(int_one, int_two, int_three):
-    int_list = [int_one, int_two, int_three]
+    try:
+        int_one = int(int_one)
+        int_two = int(int_two)
+        int_three = int(int_three)
+        
+        int_list = [int_one, int_two, int_three]
+        
+        return max(int_list)
     
-    return max(int_list)
+    except ValueError:
+        print('Input Error: Arguments must be integers.')
+        return None
 
 print('Exercise 6:', largest(1, 2, 3))
-print('Exercise 6:', largest(10, 4, 2))
+print('Exercise 6:', largest(10, 4, 'f'))
 print('Exercise 6:', largest(1032, 430, -2))
 
 # Exercise 7: Calculate a Tip
@@ -132,7 +192,17 @@ print('Exercise 6:', largest(1032, 430, -2))
 # Write your function and test its output below.
 
 def calculate_tip(bill, tip_percent):
-    return bill * (tip_percent/100)
+    try:
+        bill = float(bill)
+        tip_percent = float(bill)
+        
+        if bill < 0 or tip_percent < 0:
+            return print ('Input Error: Bill and Tip Percent must greater than 0.')
+        else:
+            return bill * (tip_percent/100)
+    
+    except ValueError:
+        print('Input Error: Bill and tip must be numbers.')
 
 print('Exercise 7:', calculate_tip(50, 20))
 
@@ -152,14 +222,19 @@ def product(*args):
     
     if 0 in args:
         return 0
-    else:
+    
+    try:        
         for arg in args:
+            arg = float(arg)
             total *= arg
-            
-        return total
+                
+        return round(total, 2)
+    
+    except ValueError:
+        print('Input Error: Arguments must be numbers.')
 
 print('Exercise 8:', product(2, 5, 5))
-print('Exercise 8:', product(-1, 4))
+print('Exercise 8:', product(-1, 0))
 print('Exercise 8:', product(10, 10, 10, 10))
 
 # Exercise 9: Basic Calculator
