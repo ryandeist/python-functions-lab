@@ -161,3 +161,52 @@ def product(*args):
 print('Exercise 8:', product(2, 5, 5))
 print('Exercise 8:', product(-1, 4))
 print('Exercise 8:', product(10, 10, 10, 10))
+
+# Exercise 9: Basic Calculator
+#
+# Create a function named `basic_calculator` that takes three arguments: 
+# two numbers and a string representing an operation ('add', 'subtract', 'multiply', 'divide'). 
+# Perform the provided operation on the two numbers. In operations where the order of numbers is important, 
+# treat the first parameter as the first operand and the second parameter as the second operand.
+#
+# Examples:
+# basic_calculator(10, 5, 'subtract') should return 5.
+# basic_calculator(10, 5, 'add') should return 15.
+# basic_calculator(10, 5, 'multiply') should return 50.
+# basic_calculator(10, 5, 'divide') should return 2.
+#
+# Define the function and then call it below.
+
+def basic_calculator(num1, num2, operation):
+    operations = ['add', 'subtract', 'multiply', 'divide']
+    
+    try: 
+        operation = operation.lower()
+        
+        if operation not in operations:
+            return 'Input Error: Operation must be add, subtract, muliply or divide.'
+
+        num1 = float(num1)
+        num2 = float(num2)
+        
+        if operation == 'add':
+            return num1 + num2
+        elif operation == 'subtract':
+            return num1 - num2
+        elif operation == 'multiply':
+            return num1 * num2
+        else:
+            if num2 == 0:
+                return 'Input Error: Cannot divide by 0.'
+            else:
+                return num1/num2
+    except ValueError:
+        return 'Input Error: Operands must be numbers.'
+
+print('Exercise 9 Result:', basic_calculator(10, 5, "subtract"))
+print('Exercise 9 Result:', basic_calculator('f', 5, "add"))
+print('Exercise 9 Result:', basic_calculator(10, 5, "cheese"))
+print('Exercise 9 Result:', basic_calculator(10, 5, "add"))
+print('Exercise 9 Result:', basic_calculator(10, 5, "multiply"))
+print('Exercise 9 Result:', basic_calculator(10, 5, "divide"))
+print('Exercise 9 Result:', basic_calculator(10, 0, "divide"))
